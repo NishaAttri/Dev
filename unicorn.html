@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Fun Facts</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #e94560, #ffba08);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            position: relative; /* Allow positioning of stars */
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 3em;
+            text-shadow: 2px 2px #000;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin: 20px auto;
+            max-width: 700px;
+            text-shadow: 1px 1px #000;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+            margin: 20px auto;
+        }
+
+        .fact-box {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px 0; /* Space between fact boxes */
+            position: relative; /* For stacking context */
+            z-index: 1; /* Bring the fact box in front of the stars */
+        }
+
+        /* Starry Background */
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 1.5s infinite ease-in-out;
+            z-index: 0; /* Send stars to the back */
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Unicorn Fun Facts!</h1>
+
+    <div class="fact-box">
+        <p>Did you know? Unicorns are a symbol of purity, freedom, and magic!</p>
+        <img src="images/unicorn1.png" alt="Unicorn Image 1">
+    </div>
+
+    <div class="fact-box">
+        <p>Unicorns have been mentioned in myths from ancient Greece to China.</p>
+        <img src="images/unicorn2.jpg" alt="Unicorn Image 2">
+    </div>
+
+    <div class="fact-box">
+        <p>In medieval times, unicorn horns were believed to neutralize poison!</p>
+        <img src="images/unicorn3.png" alt="Unicorn Image 3">
+    </div>
+
+    <div class="fact-box">
+        <p>The official animal of Scotland is the unicorn!</p>
+        <img src="images/unicorn4.jpg" alt="Unicorn Image 4">
+    </div>
+
+    <script>
+        // Create stars dynamically
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.opacity = Math.random();
+            document.body.appendChild(star);
+        }
+
+        // Adjust star positions to prevent overlap with content
+        const adjustStars = () => {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(star => {
+                const randomY = Math.random() * 100; // Random vertical position
+                star.style.top = `${randomY}vh`; // Set new position
+            });
+        };
+
+        adjustStars(); // Call the function to adjust star positions
+    </script>
+</body>
+</html>
